@@ -5,12 +5,15 @@ const logger = require('./logger');
 const ngrok = require('ngrok');
 
 const frontend = require('./middlewares/frontendMiddleware');
+const loginMiddleware = require('./middlewares/loginMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+
+app.use(loginMiddleware({}));
 
 // Initialize frontend middleware that will serve your JS app
 const webpackConfig = isDev

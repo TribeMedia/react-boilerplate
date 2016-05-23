@@ -19,6 +19,9 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  LOGIN_USER,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
 } from './constants';
 
 /**
@@ -30,6 +33,28 @@ export function loadRepos() {
   return {
     type: LOAD_REPOS,
   };
+}
+
+export function loginUser(username, password) {
+  return {
+    type: LOGIN_USER,
+    username,
+    password
+  }
+}
+
+export function loginSuccess(user) {
+  return {
+    type: LOGIN_SUCCESS,
+    user
+  }
+}
+
+export function loginError(error) {
+  return {
+    type: LOGIN_ERROR,
+    error
+  }
 }
 
 /**

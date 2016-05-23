@@ -14,6 +14,8 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS
 } from './constants';
 import { fromJS } from 'immutable';
 
@@ -43,6 +45,16 @@ function homeReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case LOGIN_SUCCESS:
+          return state
+            .set('currentUser', action.user)
+            .set('loading', false)
+            .set('error', false);
+    case LOGIN_ERROR:
+      return state
+        .set('currentUser', null)
+        .set('loading', false)
+        .set('error', action.error);
     default:
       return state;
   }

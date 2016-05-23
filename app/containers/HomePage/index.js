@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import Header from '../../components/Header';
+
 import { createSelector } from 'reselect';
 
 import {
@@ -74,9 +76,10 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
+          <Header onMenuSelect={ () => this.openRoute('/login')} />
           <section className={`${styles.textSection} ${styles.centered}`}>
-            <H2>Start your next react project in seconds</H2>
-            <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
+            <H2>User Application for A/B Testing</H2>
+            <p>This application retrieves properties from an A/B testing REST service.</p>
           </section>
           <section className={styles.textSection}>
             <H2>Try me!</H2>

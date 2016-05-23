@@ -6,7 +6,11 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
+import React from 'react'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MyTheme from '../../material_ui_theme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
@@ -18,15 +22,21 @@ import A from 'components/A';
 
 import styles from './styles.css';
 
+const muiTheme = getMuiTheme(MyTheme);
+
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
+
 function App(props) {
   return (
-    <div className={styles.wrapper}>
-      <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-        <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-      </A>
-      {props.children}
-      <Footer />
-    </div>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <div className={styles.wrapper}>
+
+        {props.children}
+        <Footer />
+
+      </div>
+    </MuiThemeProvider>
   );
 }
 
