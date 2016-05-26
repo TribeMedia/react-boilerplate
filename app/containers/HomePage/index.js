@@ -17,6 +17,7 @@ import {
   selectRepos,
   selectLoading,
   selectError,
+  selectHeaderTitle,
 } from 'containers/App/selectors';
 
 import {
@@ -24,7 +25,7 @@ import {
 } from './selectors';
 
 import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
+import { loadRepos, setHeaderTitle } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -45,6 +46,10 @@ export class HomePage extends React.Component {
    */
   openRoute = (route) => {
     this.props.changeRoute(route);
+  };
+
+  setHeaderTitle = (title) => {
+    this.props.onSetTitle(title);
   };
 
   /**
@@ -76,7 +81,7 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
-          <Header onMenuSelect={ () => this.openRoute('/login')} />
+          <Header title={this.props.headerTitle} onMenuSelect={ () => this.openRoute('/login')} onSetTitle={ (title) => this.props.onSetTitle(title)} />
           <section className={`${styles.textSection} ${styles.centered}`}>
             <H2>User Application for A/B Testing</H2>
             <p>This application retrieves properties from an A/B testing REST service.</p>
@@ -90,7 +95,7 @@ export class HomePage extends React.Component {
                   id="username"
                   className={styles.input}
                   type="text"
-                  placeholder="mxstbr"
+                  placeholder="gqadonis"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
                 />
@@ -119,6 +124,7 @@ HomePage.propTypes = {
   onSubmitForm: React.PropTypes.func,
   username: React.PropTypes.string,
   onChangeUsername: React.PropTypes.func,
+  onSetTitle: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -129,6 +135,7 @@ function mapDispatchToProps(dispatch) {
       evt.preventDefault();
       dispatch(loadRepos());
     },
+    onSetTitle: (title) => dispatch(setHeaderTitle(title)),
 
     dispatch,
   };
@@ -140,5 +147,6 @@ export default connect(createSelector(
   selectUsername(),
   selectLoading(),
   selectError(),
-  (repos, username, loading, error) => ({ repos, username, loading, error })
+  selectHeaderTitle(),
+  (repos, username, loading, error, headerTitle) => ({ repos, username, loading, error, headerTitle })
 ), mapDispatchToProps)(HomePage);

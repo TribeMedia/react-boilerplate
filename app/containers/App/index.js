@@ -22,6 +22,10 @@ import A from 'components/A';
 
 import styles from './styles.css';
 
+import getInspectorTools from '../../inspectorTools';
+
+const inspectorTools = getInspectorTools();
+
 const muiTheme = getMuiTheme(MyTheme);
 
 var injectTapEventPlugin = require("react-tap-event-plugin");

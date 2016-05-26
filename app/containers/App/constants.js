@@ -16,3 +16,5 @@ export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 export const LOGIN_USER = 'boilerplate/App/LOGIN_USER';
 export const LOGIN_SUCCESS = 'boilerplate/App/LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'boilerplate/App/LOGIN_ERROR';
+
+export const SET_HEADER_TITLE = 'boilerplate/App/SET_HEADER_TITLE';

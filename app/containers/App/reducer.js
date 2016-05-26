@@ -15,7 +15,8 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
   LOGIN_ERROR,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  SET_HEADER_TITLE,
 } from './constants';
 import { fromJS } from 'immutable';
 
@@ -24,6 +25,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   currentUser: false,
+  headerTitle: 'A/B Testing User App',
   userData: fromJS({
     repositories: false,
   }),
@@ -55,6 +57,10 @@ function homeReducer(state = initialState, action) {
         .set('currentUser', null)
         .set('loading', false)
         .set('error', action.error);
+    case SET_HEADER_TITLE:
+      console.log('Caught SET_HEADER_TITLE in App reducer: ' + action.title);
+      return state
+        .set('headerTitle', action.title)
     default:
       return state;
   }

@@ -11,6 +11,11 @@ const selectCurrentUser = () => createSelector(
   (globalState) => globalState.get('currentUser')
 );
 
+const selectHeaderTitle = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.get('headerTitle')
+);
+
 const selectLoading = () => createSelector(
   selectGlobal(),
   (globalState) => globalState.get('loading')
@@ -49,4 +54,5 @@ export {
   selectError,
   selectRepos,
   selectLocationState,
+  selectHeaderTitle,
 };

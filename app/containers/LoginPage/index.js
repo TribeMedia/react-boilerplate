@@ -32,6 +32,10 @@ import {
 import { changeUsername, changePassword } from './actions';
 import { loginUser } from '../App/actions';
 
+import getInspectorTools from '../../inspectorTools';
+
+const inspectorTools = getInspectorTools();
+
 export class LoginPage extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate;
 
@@ -43,6 +47,14 @@ export class LoginPage extends React.Component {
   openRoute = (route) => {
     this.props.changeRoute(route);
   };
+
+  componentDidMount() {
+    inspectorTools.addComponent("LoginPage", this, {});
+  }
+  
+  componentWillUnmount() {
+    inspectorTools.removeComponent("LoginPage");
+  }
 
   componentDidUpdate() {
     if (this.props.user) {

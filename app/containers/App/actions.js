@@ -22,6 +22,7 @@ import {
   LOGIN_USER,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  SET_HEADER_TITLE
 } from './constants';
 
 /**
@@ -32,6 +33,14 @@ import {
 export function loadRepos() {
   return {
     type: LOAD_REPOS,
+  };
+}
+
+export function setHeaderTitle(title) {
+  console.log('Setting title action: ' + title);
+  return {
+    type: SET_HEADER_TITLE,
+    title
   };
 }
 
